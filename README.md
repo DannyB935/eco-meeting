@@ -14,6 +14,15 @@ pnpm dev
 bun dev
 ```
 
+Paleta de colores:
+ - #D9B991
+ - #D9BD89
+ - #222326
+ - #027154
+ - #12733A
+ - #87C75C
+
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
