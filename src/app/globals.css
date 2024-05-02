@@ -1,14 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '~bootstrap-icons/font/bootstrap-icons';
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --main-background: #D9B991;
+  --main-color: #027154;
+  --third-color: #80a89d;
+  --btn-color: #87C75C;
+  --black-font: #222326;
 }
 
 body{
   background-color: var(--main-background);
+  font-size: large;
+}
+
+.navbarClass{
+  background-color: var(--main-color);
+  color: white;;
+}
+
+/* *Estilos botoness */
+.mainBtn{
+  background-color: var(--btn-color);
+  color: var(--black-font);
+}
+
+.mainBtn:hover{
+  background-color: #9de96a;
+  cursor: pointer;
+}
+
+.secBtn{
+  background-color: var(--third-color);
+  color: var(--black-font);
+}
+
+.secBtn:hover{
+  background-color: #99c9bc;
+  cursor: pointer;
+}
+
+.thirdBtn{
+  background-color: var(--black-font);
+  color: white;
+}
+
+.thirdBtn:hover{
+  background-color: #3b3d42;
+  cursor: pointer;
 }
