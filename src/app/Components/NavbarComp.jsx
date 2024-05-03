@@ -16,9 +16,7 @@ const NavbarComp = () =>{
       </div>
       <div className="container mx-auto hidden md:flex md:flex-row justify-between">
         <div>
-          <p className='text-6xl'>
-            <h2>EcoMeeting</h2>
-          </p>
+          <h2 className='text-6xl'>EcoMeeting</h2>
         </div>
         <div>
           <input type="button" value="Comunidad" className='py-2 px-4 mx-2 thirdBtn rounded-md'/>
@@ -29,7 +27,7 @@ const NavbarComp = () =>{
         </div>
       </div>
       {isOpen &&(
-        <div className="container mx-auto md:hidden flex-col absolute top-24 navbarClass w-full left-0 py-8 px-2">
+        <div className="container mx-auto md:hidden flex-col top-24 navbarClass w-full left-0 py-8 px-2 absolute z-10">
           <div>
             <input type="button" value="Comunidad" className='py-2 px-4 mx-2 thirdBtn rounded-md'/>
           </div>
