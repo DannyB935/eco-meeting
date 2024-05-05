@@ -65,3 +65,9 @@ body{
   background-color: var(--btn-color);
   color: white;
 }
+
+
+/* *Estilos tips */
+.mainWall{
+  background-color: var(--third-color);
+}

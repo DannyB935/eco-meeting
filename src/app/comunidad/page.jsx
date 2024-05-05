@@ -5,6 +5,9 @@ import { useState } from 'react';
 import NavbarComp from '../Components/NavbarComp';
 import FooterNavComp from '../Components/FooterComp';
 import TabviewComp from '../Components/TabviewComp';
+import TipsComp from '../Components/Content/TipsComp';
+import MeetingComp from '../Components/Content/MeetingComp';
+import ContactComp from '../Components/Content/ContactComp';
 
 const ComunidadComp = () => {
 
@@ -16,10 +19,23 @@ const ComunidadComp = () => {
     setActTab(tab);
   }
 
+  let showComp;
+
+  if(actTab == 1){
+    showComp = <TipsComp />
+  }else{
+    if(actTab == 2){
+      showComp = <MeetingComp />
+    }else{
+      showComp = <ContactComp />
+    }
+  }
+
   return (
     <div className='flex flex-col min-h-screen h-screen'>
       <NavbarComp />
       <TabviewComp tab={actTab} setTab={handleTab}/>
+      {showComp}
       <FooterNavComp />
     </div>
   )
