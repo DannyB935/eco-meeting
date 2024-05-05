@@ -19,23 +19,15 @@ const ComunidadComp = () => {
     setActTab(tab);
   }
 
-  let showComp;
-
-  if(actTab == 1){
-    showComp = <TipsComp />
-  }else{
-    if(actTab == 2){
-      showComp = <MeetingComp />
-    }else{
-      showComp = <ContactComp />
-    }
-  }
-
   return (
     <div className='flex flex-col min-h-screen h-screen'>
       <NavbarComp />
       <TabviewComp tab={actTab} setTab={handleTab}/>
-      {showComp}
+      
+      {actTab === 1 && <TipsComp />}
+      {actTab === 2 && <MeetingComp />}
+      {actTab === 3 && <ContactComp />}
+
       <FooterNavComp />
     </div>
   )
