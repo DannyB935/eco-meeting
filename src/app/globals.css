@@ -54,3 +54,14 @@ body{
   background-color: #3b3d42;
   cursor: pointer;
 }
+
+/* *Estilos Tabview */
+.tabView{
+  background-color: var(--main-color);
+  color: white;
+}
+
+.activeTab{
+  background-color: var(--btn-color);
+  color: white;
+}

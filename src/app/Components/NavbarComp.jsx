@@ -1,6 +1,7 @@
 // !Use client para los hooks, los cambios y acciones solo son reflejados en el cliente, no el servidor
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const NavbarComp = () =>{
 
@@ -18,8 +19,8 @@ const NavbarComp = () =>{
         <div>
           <h2 className='text-6xl'>EcoMeeting</h2>
         </div>
-        <div>
-          <input type="button" value="Comunidad" className='py-2 px-4 mx-2 thirdBtn rounded-md'/>
+        <div className='flex items-center'>
+          <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="/comunidad/">Comunidad</Link>
         </div>
         <div>
           <input type="button" value="Iniciar Sesion" className="mainBtn p-2 mx-2 rounded-md"/>
