@@ -15,7 +15,7 @@ const MeetingComp = () => {
                 <span className="text-lg">Fecha: 10/10/20</span>
             </div>
             <hr />
-            <div className="overflow-y-auto max-h-44">
+            <div className="overflow-y-auto max-h-40">
               <div className="text-left p-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
               </div>
@@ -28,7 +28,7 @@ const MeetingComp = () => {
                 <span className="text-lg">Fecha: 10/10/20</span>
             </div>
             <hr />
-            <div className="overflow-y-auto max-h-44">
+            <div className="overflow-y-auto max-h-36">
               <div className="text-left p-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
               </div>
@@ -41,7 +41,7 @@ const MeetingComp = () => {
                 <span className="text-lg">Fecha: 10/10/20</span>
             </div>
             <hr />
-            <div className="overflow-y-auto max-h-44">
+            <div className="overflow-y-auto max-h-36">
               <div className="text-left p-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
               </div>
@@ -54,7 +54,7 @@ const MeetingComp = () => {
                 <span className="text-lg">Fecha: 10/10/20</span>
             </div>
             <hr />
-            <div className="overflow-y-auto max-h-44">
+            <div className="overflow-y-auto max-h-36">
               <div className="text-left p-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
               </div>

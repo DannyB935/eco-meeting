@@ -66,8 +66,13 @@ body{
   color: white;
 }
 
-
 /* *Estilos tips */
 .mainWall{
   background-color: var(--third-color);
+}
+
+/* *Estilos formularios */
+.selects{
+  background-color: var(--btn-color);
+  color: white;
 }
