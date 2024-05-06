@@ -3,14 +3,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-const NavbarComp = () =>{
+const NavbarComp = ({openLogIn, openRegister}) =>{
 
   const [isOpen, setisOpen] = useState(false);
 
   return(
     <nav className="navbarClass h-24 p-6 relative flex items-center">
       <div className="flex flex-grow items-center">
-        <img src="Logo.png" alt="Logo" className="h-24 bg-slate-100 rounded-md" />
+        <Link href="/">
+          <img src="Logo.png" alt="Logo" className="h-24 bg-slate-100 rounded-md" />
+        </Link>
       </div>
       <div className="flex">
         <button className="px-2 mx-4 mainBtn rounded-md md:hidden" onClick={()=>setisOpen(!isOpen)}><i className='bi bi-list text-4xl text-black'></i></button>
@@ -23,8 +25,8 @@ const NavbarComp = () =>{
           <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="/comunidad/">Comunidad</Link>
         </div>
         <div>
-          <input type="button" value="Iniciar Sesion" className="mainBtn p-2 mx-2 rounded-md"/>
-          <input type="button" value="Registrarse" className="secBtn p-2 mx-2 rounded-md"/>
+          <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
+          <input type="button" value="Registrarse" onClick={()=>openRegister()} className="secBtn p-2 mx-2 rounded-md"/>
         </div>
       </div>
       {isOpen &&(
@@ -33,8 +35,8 @@ const NavbarComp = () =>{
             <input type="button" value="Comunidad" className='py-2 px-4 mx-2 thirdBtn rounded-md'/>
           </div>
           <div className='mt-2'>
-            <input type="button" value="Iniciar Sesion" className="mainBtn p-2 mx-2 rounded-md"/>
-            <input type="button" value="Registrarse" className="secBtn p-2 mx-2 rounded-md"/>
+            <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
+            <input type="button" value="Registrarse" onClick={()=>openRegister()} className="secBtn p-2 mx-2 rounded-md"/>
           </div>
         </div>
       )}

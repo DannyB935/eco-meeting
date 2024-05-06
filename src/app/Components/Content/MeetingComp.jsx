@@ -1,11 +1,22 @@
+'use client';
+import { useState } from 'react';
+
+import NewPostModal from '../NewPostModal';
 
 const MeetingComp = () => {
+
+  const [meetingModal, setMeetingModal] = useState(false);
+
+  const handleMeetingModal = () => {
+    setMeetingModal(!meetingModal);
+  }
+
   return(
     <div className="flex flex-col flex-grow justify-center items-center">
       <div className="container mainWall flex-col h-full md:rounded-xl md:shadow-xl md:my-2">
         <div className="flex justify-center p-4 md:p-8 my-4 items-center">
           <span className="mx-4">Nueva publicacion:</span> 
-          <button className="rounded-md mainBtn w-full p-2 shadow-lg hover:shadow-xl transition-transform duration-500 hover:scale-110 md:w-32"><i className="bi bi-plus text-2xl"></i></button>
+          <button onClick={()=>handleMeetingModal()} className="rounded-md mainBtn w-full p-2 shadow-lg hover:shadow-xl transition-transform duration-500 hover:scale-110 md:w-32"><i className="bi bi-plus text-2xl"></i></button>
         </div>
         <div className="flex flex-col md:grid md:grid-cols-3 gap-4 mx-2 p-4 md:p-2">
           {/* *El col-span es uno si y dos no */}
@@ -60,9 +71,9 @@ const MeetingComp = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
+      {meetingModal && <NewPostModal openModal={handleMeetingModal}/>}
     </div>
   );
 };

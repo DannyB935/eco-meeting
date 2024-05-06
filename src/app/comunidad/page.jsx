@@ -23,7 +23,7 @@ const ComunidadComp = () => {
     <div className='flex flex-col min-h-screen h-screen'>
       <NavbarComp />
       <TabviewComp tab={actTab} setTab={handleTab}/>
-      
+
       {actTab === 1 && <TipsComp />}
       {actTab === 2 && <MeetingComp />}
       {actTab === 3 && <ContactComp />}

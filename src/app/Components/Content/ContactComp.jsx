@@ -2,7 +2,7 @@
 const ContactComp = () => {
   return(
     <div className="flex flex-col flex-grow justify-center items-center">
-      <div className="container bg-slate-100 md:rounded-md md:shadow-xl md:my-2 h-full md:w-1/2">
+      <div className="container bg-slate-100 md:rounded-md md:shadow-xl md:my-2 h-full md:h-auto md:w-1/2">
         <div className="flex flex-col justify-center items-center">
           <h1 className="p-4 text-4xl text-center">Contacta con nosotros!</h1>
           <hr />
