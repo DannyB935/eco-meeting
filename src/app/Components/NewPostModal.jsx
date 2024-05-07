@@ -9,7 +9,7 @@ const NewPostModal = ({openModal}) => {
 
   return(
     <div id="newPost" onClick={onClose} className='flex justify-center fixed inset-0 z-50 items-center bg-black bg-opacity-40'>
-      <div className='container bg-slate-100 flex-col p-4 rounded-lg w-5/6 h-4/6 md:w-1/4 md:h-2/5'>
+      <div className='container bg-slate-100 flex-col p-4 rounded-lg max-w-sm md:max-w-lg mx-auto'>
         <div className="flex justify-between">
           <h4 className="text-2xl p-2">Nueva publicacion</h4>
           <button onClick={()=>openModal()} className="transition-transform duration-500 hover:scale-150"><i className="bi bi-x-lg"></i></button>

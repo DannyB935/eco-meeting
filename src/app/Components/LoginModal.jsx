@@ -8,8 +8,8 @@ const LoginModal = ({openModal}) => {
   };
 
   return(
-    <div id="modalWrapper" onClick={onClose} className='flex justify-center fixed inset-0 z-50 items-center bg-black bg-opacity-40'>
-      <div className='container bg-slate-100 flex-col p-4 rounded-lg w-5/6 h-3/6 md:w-1/4 md:h-2/6'>
+    <div id="modalWrapper" onClick={onClose} className='flex top-0 left-0 w-full h-full justify-center fixed inset-0 z-50 items-center bg-black bg-opacity-40'>
+      <div className='container bg-slate-100 flex-col p-4 rounded-lg max-w-sm mx-auto'>
         <div className="flex justify-between">
           <h4 className="text-2xl p-2">Iniciar Sesion</h4>
           <button onClick={()=>openModal()} className="transition-transform duration-500 hover:scale-150"><i className="bi bi-x-lg"></i></button>
