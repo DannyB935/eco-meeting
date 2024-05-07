@@ -22,7 +22,7 @@ const NavbarComp = ({openLogIn, openRegister}) =>{
           <h2 className='text-6xl'>EcoMeeting</h2>
         </div>
         <div className='flex items-center'>
-          <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="/comunidad/">Comunidad</Link>
+          <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="/comunidad">Comunidad</Link>
         </div>
         <div>
           <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
