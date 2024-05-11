@@ -10,7 +10,7 @@ const RegisterModal = ({openModal}) => {
   return(
     <div id="registerModal" onClick={onClose} className='flex justify-center fixed inset-0 z-50 items-center bg-black bg-opacity-40'>
       <div className='container bg-slate-100 flex-col p-4 rounded-lg max-w-sm md:max-w-md mx-auto'>
-        <div className="flex justify-between">
+        <div className="flex justify-between bg-verde-lima-custom p-2 rounded-t-lg">
           <h4 className="text-2xl p-2">Registrarse</h4>
           <button onClick={()=>openModal()} className="transition-transform duration-500 hover:scale-150"><i className="bi bi-x-lg"></i></button>
         </div>

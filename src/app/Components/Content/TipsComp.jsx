@@ -19,7 +19,7 @@ const TipsComp = () => {
         </div>
         <div className="flex flex-col md:grid gap-4 mx-2 md:grid-cols-4 lg:grid-cols-5 p-4 md:p-2">
           <div className="bg-slate-100 rounded-md shadow-lg w-full h-56 min-h-56 transition-transform duration-500 hover:scale-110 hover:shadow-xl">
-            <div className="text-center text-xl flex flex-col items-center">
+            <div className="text-center text-xl flex flex-col items-center p-2 bg-verde-chido-full text-white rounded-t-md">
                 <h4>Titulo del tip</h4>
             </div>
             <hr />

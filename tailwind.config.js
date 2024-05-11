@@ -12,6 +12,11 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        'verde-chido-full': '#027154',
+        'verde-lima-custom': '#87C75C',
+        'verde-lima-hover': '#9de96a'
+      }
     },
   },
   plugins: [

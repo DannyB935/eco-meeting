@@ -22,7 +22,7 @@ const NavbarComp = ({openLogIn, openRegister}) =>{
           <h2 className='text-6xl'>EcoMeeting</h2>
         </div>
         <div className='flex items-center'>
-          <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="/comunidad">Comunidad</Link>
+          <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="./comunidad">Comunidad</Link>
         </div>
         <div>
           <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
@@ -32,7 +32,7 @@ const NavbarComp = ({openLogIn, openRegister}) =>{
       {isOpen &&(
         <div className="container mx-auto md:hidden flex-col top-24 navbarClass w-full left-0 py-8 px-2 absolute z-10">
           <div>
-            <input type="button" value="Comunidad" className='py-2 px-4 mx-2 thirdBtn rounded-md'/>
+            <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="./comunidad">Comunidad</Link>
           </div>
           <div className='mt-2'>
             <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>

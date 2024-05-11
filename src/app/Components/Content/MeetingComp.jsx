@@ -21,7 +21,7 @@ const MeetingComp = () => {
         <div className="flex flex-col md:grid md:grid-cols-3 gap-4 mx-2 p-4 md:p-2">
           {/* *El col-span es uno si y dos no */}
           <div className={`bg-slate-100 rounded-md shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-xl h-64 min-h-64 col-span-2`}>
-            <div className="text-center flex justify-center items-center">
+            <div className="text-center flex justify-center items-center bg-verde-chido-full text-white rounded-t-md">
                 <h4 className="p-4 text-2xl">Titulo de la publicacion</h4>
                 <span className="text-lg">Fecha: 10/10/20</span>
             </div>

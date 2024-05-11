@@ -18,7 +18,6 @@ export default function Home() {
   }
 
   const handleRegister = () => {
-    console.log('Register');
     setRegisterOpen(!registerOpen);
   }
 

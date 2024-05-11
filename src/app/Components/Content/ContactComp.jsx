@@ -21,10 +21,10 @@ const ContactComp = () => {
             </div>
             <div className="p-2 my-1 flex">
               <label htmlFor="persona" className="mr-2">Persona: </label>
-              <input type="radio" name="persona" id="persona" value="persona" className="w-4" checked/>
+              <input type="radio" name="persona" id="persona" value="persona" className="w-4"/>
 
               <label htmlFor="empresa" className="mr-2 ms-4">Empresa: </label>
-              <input type="radio" name="empresa" id="empresa" value="empresa" className="w-4" checked/>
+              <input type="radio" name="empresa" id="empresa" value="empresa" className="w-4"/>
             </div>
             <div className="p-2 my-1">
               <label htmlFor="categoria" className="block">Categoria: </label>
