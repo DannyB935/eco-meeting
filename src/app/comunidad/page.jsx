@@ -11,6 +11,8 @@ import ContactComp from '../Components/Content/ContactComp';
 import LoginModal from "../Components/LoginModal";
 import RegisterModal from "../Components/RegisterModal";
 
+import { isLoggedIn } from '@/lib/utils';
+
 const ComunidadComp = () => {
 
    // *Para saber que componente se debe mostrar en todo momento

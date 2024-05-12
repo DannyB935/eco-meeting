@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import {getTips} from '../../../lib/utils';
+import {getTips, isLoggedIn} from '../../../lib/utils';
 
 import NewTipModal from '../NewTipModal';
 import TarjetaTip from '../TarjetaTip';
@@ -33,9 +33,15 @@ const TipsComp = () => {
   return(
     <div className="flex flex-col flex-grow justify-center items-center">
       <div className="container mainWall flex-col h-full md:rounded-xl md:shadow-xl md:my-2">
-        <div className="flex justify-center p-4 md:p-8 my-4">
-          <button onClick={()=>handleTipModal()} className="rounded-md mainBtn w-full p-2 shadow-lg hover:shadow-xl transition-transform duration-500 hover:scale-110 md:w-32"><i className="bi bi-plus text-2xl"></i></button>
-        </div>
+        { isLoggedIn() ? (
+          <div className="flex justify-center p-4 md:p-8 my-4">
+            <button onClick={()=>handleTipModal()} className="rounded-md mainBtn w-full p-2 shadow-lg hover:shadow-xl transition-transform duration-500 hover:scale-110 md:w-32"><i className="bi bi-plus text-2xl"></i></button>
+          </div>
+          ): (
+          <div className="flex justify-center p-4 md:p-8 my-4">
+            <span>Para publicar un tip, inicia sesion</span>
+          </div>
+        )}
         <div className="flex flex-col md:grid gap-4 mx-2 md:grid-cols-4 lg:grid-cols-5 p-4 md:p-2">
           {
             tips.map((tip, index) => {
