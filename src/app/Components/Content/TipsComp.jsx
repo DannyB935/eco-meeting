@@ -5,15 +5,29 @@ import axios from 'axios';
 import {getTips, isLoggedIn} from '../../../lib/utils';
 
 import NewTipModal from '../NewTipModal';
+import EditTipModal from '../EditTipModal';
 import TarjetaTip from '../TarjetaTip';
 
 const TipsComp = () => {
 
   const [tipModal, setTipModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const [tips, setTips] = useState([]);
+  const [tipId, setTipId] = useState('');
 
   const handleTipModal = () => {
     setTipModal(!tipModal);
+  }
+
+  const handleEditModal = () =>{
+    setEditModal(!editModal);
+    const getData = async () => {
+      let res = await getTips();
+      if(res !== null){
+        setTips(res);
+      }
+    }
+    getData();
   }
 
   const doNewTip = async (form) => {
@@ -31,6 +45,11 @@ const TipsComp = () => {
     }catch(e){
       console.log("Error al hacer la llamada a la API por el nuevo tip: ", e);
     }
+  }
+
+  const getId = (id) => {
+    setTipId(id);
+    handleEditModal();
   }
 
   useEffect(() => {
@@ -64,13 +83,14 @@ const TipsComp = () => {
           {
             tips.map((tip, index) => {
               return(
-                <TarjetaTip key={index} title={tip.titulo} content={tip.descripcion} id={tip.id} id_user={tip.id_usuario}/>
+                <TarjetaTip key={index} title={tip.titulo} content={tip.descripcion} id={tip.id} id_user={tip.id_usuario} getId={getId}/>
               )
             })
           }
         </div>
       </div>
       {tipModal && <NewTipModal openModal={handleTipModal} handleNewTip={doNewTip}/>}
+      { editModal && <EditTipModal openModal={handleEditModal} id={tipId} /> }
     </div>
   );
 };

@@ -1,5 +1,5 @@
 
-const TarjetaPost = ({id, title, date, descrip, id_user, cat}) =>{
+const TarjetaPost = ({id, title, date, descrip, id_user, cat, getPostId}) =>{
   return(
     <div className={`bg-slate-100 rounded-md shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-xl h-64 min-h-64 ${cat!=1 ? 'col-span-2' : 'col-span-1'}`}>
       <div className="text-center flex justify-center items-center bg-verde-chido-full text-white rounded-t-md">
@@ -7,7 +7,7 @@ const TarjetaPost = ({id, title, date, descrip, id_user, cat}) =>{
           <span className="text-lg">Fecha: {date}</span>
       </div>
       <hr />
-      <div className="overflow-y-auto max-h-40">
+      <div className="overflow-y-auto max-h-40 hover:cursor-pointer" onClick={()=>getPostId(id)}>
         <div className="text-left p-4">
           {descrip}
         </div>

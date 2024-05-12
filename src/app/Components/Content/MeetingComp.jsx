@@ -5,16 +5,30 @@ import axios from 'axios';
 import { getPosts, isLoggedIn} from '@/lib/utils';
 
 import NewPostModal from '../NewPostModal';
+import EditPostModal from '../EditPostModal';
 import TarjetaPost from '../TarjetaPost';
 
 const MeetingComp = () => {
 
   const [meetingModal, setMeetingModal] = useState(false);
+  const [editPostModal, setEditPostModal] = useState(false);
+  const [idPost, setIdPost] = useState('');
   const [posts, setPosts] = useState([]);
 
   const handleMeetingModal = () => {
     console.log("Modal abierto");
     setMeetingModal(!meetingModal);
+  }
+
+  const handleEditPostModal = () =>{
+    setEditPostModal(!editPostModal);
+    const getData = async () => {
+      let res = await getPosts();
+      if(res !== null){
+        setPosts(res);
+      }
+    }
+    getData();
   }
 
   const handleNewPost = async (form) =>{
@@ -30,6 +44,11 @@ const MeetingComp = () => {
     }catch(e){
       console.log("Error al hacer la publicacion: ", e);
     }
+  }
+
+  const getPostId = (id) => {
+    setIdPost(id);
+    handleEditPostModal();
   }
 
   useEffect(()=>{
@@ -64,7 +83,7 @@ const MeetingComp = () => {
           {
             posts.map((post, index) => {
               return(
-                <TarjetaPost key={index} id={post.id} title={post.titulo} date={post.created_at} descrip={post.descripcion} id_user={post.id_usuario} cat={post.categoria}/>
+                <TarjetaPost key={index} id={post.id} title={post.titulo} date={post.created_at} descrip={post.descripcion} id_user={post.id_usuario} cat={post.categoria} getPostId={getPostId}/>
               )
             })
           }
@@ -72,6 +91,7 @@ const MeetingComp = () => {
         </div>
       </div>
       {meetingModal && <NewPostModal openModal={handleMeetingModal} handleNewPost={handleNewPost}/>}
+      {editPostModal && <EditPostModal openModal={handleEditPostModal} id={idPost}/>}
     </div>
   );
 };
