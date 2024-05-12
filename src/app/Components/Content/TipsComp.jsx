@@ -1,15 +1,34 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import {getTips} from '../../../lib/utils';
 
 import NewTipModal from '../NewTipModal';
+import TarjetaTip from '../TarjetaTip';
 
 const TipsComp = () => {
 
   const [tipModal, setTipModal] = useState(false);
+  const [tips, setTips] = useState([]);
 
   const handleTipModal = () => {
     setTipModal(!tipModal);
   }
+
+  useEffect(() => {
+    try{
+      const getData = async () => {
+        let res = await getTips();
+        if(res !== null){
+          setTips(res);
+        }
+      }
+      getData();
+    }catch(e){
+      console.log("Error al hacer la llamada a la API por los tips: ", e);
+    }
+
+  }, []);
 
   return(
     <div className="flex flex-col flex-grow justify-center items-center">
@@ -18,50 +37,13 @@ const TipsComp = () => {
           <button onClick={()=>handleTipModal()} className="rounded-md mainBtn w-full p-2 shadow-lg hover:shadow-xl transition-transform duration-500 hover:scale-110 md:w-32"><i className="bi bi-plus text-2xl"></i></button>
         </div>
         <div className="flex flex-col md:grid gap-4 mx-2 md:grid-cols-4 lg:grid-cols-5 p-4 md:p-2">
-          <div className="bg-slate-100 rounded-md shadow-lg w-full h-56 min-h-56 transition-transform duration-500 hover:scale-110 hover:shadow-xl">
-            <div className="text-center text-xl flex flex-col items-center p-2 bg-verde-chido-full text-white rounded-t-md">
-                <h4>Titulo del tip</h4>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-44">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
-          <div className="bg-slate-100 rounded-md shadow-lg w-full h-56 min-h-56 transition-transform duration-500 hover:scale-110 hover:shadow-xl">
-            <div className="text-center text-xl flex flex-col items-center">
-              <h4>Titulo del tip</h4>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-44">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
-          <div className="bg-slate-100 rounded-md shadow-lg w-full h-56 min-h-56 transition-transform duration-500 hover:scale-110 hover:shadow-xl">
-            <div className="text-center text-xl flex flex-col items-center">
-              <h4>Titulo del tip</h4>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-44">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
-          <div className="bg-slate-100 rounded-md shadow-lg w-full h-56 min-h-56 transition-transform duration-500 hover:scale-110 hover:shadow-xl">
-            <div className="text-center text-xl flex flex-col items-center">
-              <h4>Titulo del tip</h4>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-44">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
+          {
+            tips.map((tip, index) => {
+              return(
+                <TarjetaTip key={index} title={tip.titulo} content={tip.descripcion} id={tip.id} id_user={tip.id_usuario}/>
+              )
+            })
+          }
         </div>
       </div>
       {tipModal && <NewTipModal openModal={handleTipModal}/>}

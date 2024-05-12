@@ -1,15 +1,33 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { getPosts } from '../../../lib/utils';
 
 import NewPostModal from '../NewPostModal';
+import TarjetaPost from '../TarjetaPost';
 
 const MeetingComp = () => {
 
   const [meetingModal, setMeetingModal] = useState(false);
+  const [posts, setPosts] = useState([]);
 
   const handleMeetingModal = () => {
     setMeetingModal(!meetingModal);
   }
+
+  useEffect(()=>{
+    try{
+      const getData = async () => {
+        let res = await getPosts();
+        if(res !== null){
+          setPosts(res);
+        }
+      }
+      getData();
+    }catch(e){
+      console.log('Error al obtener los posts: ', e);
+    }
+  },[]);
 
   return(
     <div className="flex flex-col flex-grow justify-center items-center">
@@ -20,57 +38,15 @@ const MeetingComp = () => {
         </div>
         <div className="flex flex-col md:grid md:grid-cols-3 gap-4 mx-2 p-4 md:p-2">
           {/* *El col-span es uno si y dos no */}
-          <div className={`bg-slate-100 rounded-md shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-xl h-64 min-h-64 col-span-2`}>
-            <div className="text-center flex justify-center items-center bg-verde-chido-full text-white rounded-t-md">
-                <h4 className="p-4 text-2xl">Titulo de la publicacion</h4>
-                <span className="text-lg">Fecha: 10/10/20</span>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-40">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
+          
+          {
+            posts.map((post, index) => {
+              return(
+                <TarjetaPost key={index} id={post.id} title={post.titulo} date={post.created_at} descrip={post.descripcion} id_user={post.id_usuario} cat={post.categoria}/>
+              )
+            })
+          }
 
-          <div className={`bg-slate-100 rounded-md shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-xl h-64 min-h-64 col-span-1`}>
-            <div className="text-center flex justify-center items-center">
-                <h4 className="p-4 text-2xl">Titulo de la publicacion</h4>
-                <span className="text-lg">Fecha: 10/10/20</span>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-36">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
-
-          <div className={`bg-slate-100 rounded-md shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-xl h-64 min-h-64 col-span-1`}>
-            <div className="text-center flex justify-center items-center">
-                <h4 className="p-4 text-2xl">Titulo de la publicacion</h4>
-                <span className="text-lg">Fecha: 10/10/20</span>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-36">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
-
-          <div className={`bg-slate-100 rounded-md shadow-lg transition-transform duration-500 hover:scale-105 hover:shadow-xl h-64 min-h-64 col-span-2`}>
-            <div className="text-center flex justify-center items-center">
-                <h4 className="p-4 text-2xl">Titulo de la publicacion</h4>
-                <span className="text-lg">Fecha: 10/10/20</span>
-            </div>
-            <hr />
-            <div className="overflow-y-auto max-h-36">
-              <div className="text-left p-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur molestiae libero natus sint repudiandae, laboriosam fuga harum aut sunt iusto. Dolores reprehenderit repellat, cupiditate provident quae nesciunt ad facilis excepturi.
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       {meetingModal && <NewPostModal openModal={handleMeetingModal}/>}
