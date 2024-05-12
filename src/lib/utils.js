@@ -44,6 +44,11 @@ export const isLoggedIn = () =>{
   return false;
 }
 
+export const logout = () => {
+  localStorage.clear();
+  window.location.reload();
+}
+
 export const register = async (formData) => {
   const res = await axios.post('http://localhost:5000/nuevo-usuario', formData);
   if(res.data.status === 'success'){
