@@ -1,5 +1,41 @@
+'use client';
+import { useState } from "react";
+
+import { login } from "../../lib/utils";
 
 const LoginModal = ({openModal}) => {
+
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleSumit = (e) => {
+    e.preventDefault();
+    if(userName === '' && password === ''){
+      setError(true);
+    }else{
+      // *Creamos el form 
+      let formData = new FormData();
+      formData.append('user_name', userName);
+      formData.append('password', password);
+
+      try{
+        const handleRequest = async (form) => {
+          const res = await login(form);
+          if(res){
+            openModal();
+          }else{
+            setError(true);
+          }
+        }
+
+        handleRequest(formData);
+
+      }catch(e){
+        console.log("Error al hacer login: ", e);
+      }
+    }
+  }
 
   const onClose = (e) => {
     if(e.target.id === 'modalWrapper'){
@@ -16,11 +52,15 @@ const LoginModal = ({openModal}) => {
         </div>
         <hr />
         <div className="flex flex-col h-5/6 p-4">
-          <form id="loginForm" name="loginForm" action="#">
-            <label htmlFor="email" className="left-0">Email: </label>
-            <input type="text" name="email" placeholder="nombre@ejemplo.com" className="p-2 my-2 w-full rounded-md border border-lime-300 focus:border-lime-500"/>
+          <form id="loginForm" name="loginForm" onSubmit={handleSumit}>
+            <label htmlFor="user_name" className="left-0">Usuario: </label>
+            <input type="text" name="user_name" value={userName} onChange={(e)=>setUserName(e.target.value)} placeholder="nombre@ejemplo.com" className="p-2 my-2 w-full rounded-md border border-lime-300 focus:border-lime-500"/>
+
             <label htmlFor="password" className="left-0">Contraseña: </label>
-            <input type="password" name="password" placeholder="Contraseña" className="p-2 my-2 w-full rounded-md border border-lime-300 focus:border-lime-500"/>
+            <input type="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Contraseña" className="p-2 my-2 w-full rounded-md border border-lime-300 focus:border-lime-500"/>
+
+            {error && <p className="text-red-500 text-xs italic">El usuario o contraseña son incorrectos</p>}
+
             <input type="submit" value="Iniciar Sesion" className="mainBtn p-2 w-full my-2 rounded-md"/>
           </form>
         </div>

@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+import { isLoggedIn } from '../../lib/utils';
+
 const NavbarComp = ({openLogIn, openRegister}) =>{
 
   const [isOpen, setisOpen] = useState(false);
@@ -19,25 +21,30 @@ const NavbarComp = ({openLogIn, openRegister}) =>{
       </div>
       <div className="container mx-auto hidden md:flex md:flex-row justify-between">
         <div>
-          <h2 className='text-6xl'>EcoMeeting</h2>
+          <h2 className='text-6xl p-2'>EcoMeeting</h2>
         </div>
         <div className='flex items-center'>
           <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="./comunidad">Comunidad</Link>
         </div>
-        <div>
-          <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
-          <input type="button" value="Registrarse" onClick={()=>openRegister()} className="secBtn p-2 mx-2 rounded-md"/>
-        </div>
+        { !isLoggedIn() &&(
+          <div>
+            <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
+            <input type="button" value="Registrarse" onClick={()=>openRegister()} className="secBtn p-2 mx-2 rounded-md"/>
+          </div>
+        )}
       </div>
       {isOpen &&(
         <div className="container mx-auto md:hidden flex-col top-24 navbarClass w-full left-0 py-8 px-2 absolute z-10">
           <div>
             <Link className='py-2 px-4 mx-2 thirdBtn rounded-md' href="./comunidad">Comunidad</Link>
           </div>
-          <div className='mt-2'>
-            <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
-            <input type="button" value="Registrarse" onClick={()=>openRegister()} className="secBtn p-2 mx-2 rounded-md"/>
-          </div>
+
+          { !isLoggedIn() && (
+            <div className='mt-2'>
+              <input type="button" value="Iniciar Sesion" onClick={()=>openLogIn()} className="mainBtn p-2 mx-2 rounded-md"/>
+              <input type="button" value="Registrarse" onClick={()=>openRegister()} className="secBtn p-2 mx-2 rounded-md"/>
+            </div>
+          )}
         </div>
       )}
     </nav>
