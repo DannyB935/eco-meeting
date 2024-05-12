@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import { getPosts, isLoggedIn } from '../../../lib/utils';
+import { getPosts, isLoggedIn} from '@/lib/utils';
 
 import NewPostModal from '../NewPostModal';
 import TarjetaPost from '../TarjetaPost';
@@ -12,7 +13,23 @@ const MeetingComp = () => {
   const [posts, setPosts] = useState([]);
 
   const handleMeetingModal = () => {
+    console.log("Modal abierto");
     setMeetingModal(!meetingModal);
+  }
+
+  const handleNewPost = async (form) =>{
+    try{
+      const res = await axios.post('http://localhost:5000/new-post', form);
+      if(res.data.status == 'success'){
+        console.log("Post creado");
+        let newPosts = await getPosts();
+        setPosts(newPosts);
+        return true;
+      }
+      return false;
+    }catch(e){
+      console.log("Error al hacer la publicacion: ", e);
+    }
   }
 
   useEffect(()=>{
@@ -54,7 +71,7 @@ const MeetingComp = () => {
 
         </div>
       </div>
-      {meetingModal && <NewPostModal openModal={handleMeetingModal}/>}
+      {meetingModal && <NewPostModal openModal={handleMeetingModal} handleNewPost={handleNewPost}/>}
     </div>
   );
 };

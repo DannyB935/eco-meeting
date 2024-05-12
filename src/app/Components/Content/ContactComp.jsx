@@ -1,6 +1,59 @@
+'use client';
+import { useState } from "react";
+import axios from "axios";
+
 import { isLoggedIn } from "@/lib/utils";
 
 const ContactComp = () => {
+
+  const [formContact, setFormContact] = useState({
+    email: '',
+    motivo: '',
+    tipo: '',
+    categoria: '',
+    cuerpo: '',
+    id_user: localStorage.getItem('id')
+  });
+  const [error, setError] = useState(false);
+
+  const handleChange = (e) => {
+    setFormContact({
+      ...formContact,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const handleSubmit = async (e) => {
+    try{
+      e.preventDefault();
+      e.stopPropagation();
+
+      for(let key in formContact){
+        if(formContact[key]==''){
+          setError(true);
+          return;
+        }else{
+
+          let form = new FormData();
+          for(let key in formContact){
+            form.append(key, formContact[key]);
+          }
+
+          const res = await axios.post('http://localhost:5000/create-message', form);
+          if(res.data.status === 'success'){
+            setError(false);
+            window.location.href = '/comunidad';
+          }else{
+            setError(true);
+          }
+
+        }
+      }
+    }catch(e){
+      console.log("Error al enviar el mensaje: ", e);
+    }
+  }
+
   return(
     <div className="flex flex-col flex-grow justify-center items-center">
       <div className="container bg-slate-100 md:rounded-md md:shadow-xl md:my-2 h-full md:h-auto md:w-1/2">
@@ -20,25 +73,25 @@ const ContactComp = () => {
         <hr />
         {isLoggedIn() && (
           <div className="flex flex-col p-4">
-            <form action="#">
+            <form onSubmit={(e)=>handleSubmit(e)}>
               <div className="p-2 my-1">
                 <label htmlFor="email" className="block">Email: </label>
-                <input type="email" name="email" id="email" className="rounded-md p-2 w-full md:w-2/5 border-2 border-slate-300" placeholder="tu-correo@ejemplo.com" />
+                <input type="email" name="email" id="email" value={formContact.title} onChange={(e)=>handleChange(e)}className="rounded-md p-2 w-full md:w-2/5 border-2 border-slate-300" placeholder="tu-correo@ejemplo.com" />
               </div>
               <div className="p-2 my-1">
                 <label htmlFor="motivo" className="block">Motivo: </label>
-                <input type="text" name="motivo" id="motivo" className="rounded-md p-2 w-full md:w-2/5 border-2 border-slate-300" placeholder="Escriba el motivo para contactarnos" />
+                <input type="text" name="motivo" id="motivo" value={formContact.motivo} onChange={(e)=>handleChange(e)}className="rounded-md p-2 w-full md:w-2/5 border-2 border-slate-300" placeholder="Escriba el motivo para contactarnos" />
               </div>
               <div className="p-2 my-1 flex">
                 <label htmlFor="persona" className="mr-2">Persona: </label>
-                <input type="radio" name="persona" id="persona" value="persona" className="w-4"/>
+                <input type="radio" name="tipo" id="persona" value="1" onChange={(e)=>handleChange(e)}className="w-4"/>
 
                 <label htmlFor="empresa" className="mr-2 ms-4">Empresa: </label>
-                <input type="radio" name="empresa" id="empresa" value="empresa" className="w-4"/>
+                <input type="radio" name="tipo" id="empresa" value="2" onChange={(e)=>handleChange(e)}className="w-4"/>
               </div>
               <div className="p-2 my-1">
                 <label htmlFor="categoria" className="block">Categoria: </label>
-                <select name="categoria" id="categoria" className="select form-select rounded-md w-full md:w-2/5 bg-lime-300 border border-lime-300 py-2 focus:outline-none focus:border-lime-300">
+                <select name="categoria" id="categoria" value={formContact.categoria} onChange={(e)=>handleChange(e)} className="select form-select rounded-md w-full md:w-2/5 bg-lime-300 border border-lime-300 py-2 focus:outline-none focus:border-lime-300">
                   {/* *1 = feedback, 2 = reporte de errores, 3 = apoyo monetario, 4 = aportar al proyecto */}
                   <option className="hover:bg-lime-700" value="1">Retroalimentacion</option>
                   <option className="hover:bg-lime-700" value="2">Reportar errores</option>
@@ -48,8 +101,13 @@ const ContactComp = () => {
               </div>
               <div className="p-2 my-1 flex flex-col">
                 <label htmlFor="cuerpo" className="block">Mensaje: </label>
-                <textarea name="cuerpo" id="cuerpo" className="h-36 rounded-md w-full border border-slate-300" placeholder="Escriba su mensaje"></textarea>
+                <textarea name="cuerpo" id="cuerpo" value={formContact.cuerpo} onChange={(e)=>handleChange(e)}className="h-36 rounded-md w-full border border-slate-300" placeholder="Escriba su mensaje"></textarea>
               </div>
+
+              {error && (
+                <p className="text-red-500 text-sm italics">Rellene todos los campos vacios</p>
+              )}
+
               <div className="p-2 my-1 flex justify-center items-center">
                 <button type="submit" className="rounded-md mainBtn w-full p-2 shadow-lg hover:shadow-xl transition-transform duration-500 hover:scale-110 md:w-32"><i className="text-lg bi bi-check"></i> Enviar</button>
               </div>

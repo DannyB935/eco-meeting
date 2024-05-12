@@ -67,3 +67,13 @@ export const register = async (formData) => {
     return false;
   }
 }
+
+export const newPost = async (formData) =>{
+  const res = await axios.post('http://localhost:5000/new-post', formData);
+  if(res.data.status === 'success'){
+    return true;
+  }else{
+    console.log("Error al hacer el post: ", res.data.message);
+    return false;
+  }
+}

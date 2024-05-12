@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import {getTips, isLoggedIn} from '../../../lib/utils';
 
@@ -13,6 +14,23 @@ const TipsComp = () => {
 
   const handleTipModal = () => {
     setTipModal(!tipModal);
+  }
+
+  const doNewTip = async (form) => {
+    try{
+      const res = await axios.post('http://localhost:5000/create-tip', form);
+      if(res.data.status === 'success'){
+        const loadTips = await getTips();
+        if(loadTips !== null){
+          setTips(loadTips);
+        }
+        return true;
+      }else{
+        return false;
+      }
+    }catch(e){
+      console.log("Error al hacer la llamada a la API por el nuevo tip: ", e);
+    }
   }
 
   useEffect(() => {
@@ -52,7 +70,7 @@ const TipsComp = () => {
           }
         </div>
       </div>
-      {tipModal && <NewTipModal openModal={handleTipModal}/>}
+      {tipModal && <NewTipModal openModal={handleTipModal} handleNewTip={doNewTip}/>}
     </div>
   );
 };
