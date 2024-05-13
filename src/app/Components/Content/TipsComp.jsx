@@ -52,6 +52,13 @@ const TipsComp = () => {
     handleEditModal();
   }
 
+  const reloadTips = async () => {
+    const loadTips = await getTips();
+    if(loadTips !== null){
+      setTips(loadTips);
+    }
+  }
+
   useEffect(() => {
     try{
       const getData = async () => {
@@ -83,7 +90,7 @@ const TipsComp = () => {
           {
             tips.map((tip, index) => {
               return(
-                <TarjetaTip key={index} title={tip.titulo} content={tip.descripcion} id={tip.id} id_user={tip.id_usuario} getId={getId}/>
+                <TarjetaTip key={index} title={tip.titulo} content={tip.descripcion} id={tip.id} id_user={tip.id_usuario} likes={tip.likes} dislikes={tip.dislikes} getId={getId} loadTips={reloadTips}/>
               )
             })
           }

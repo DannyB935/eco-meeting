@@ -51,6 +51,13 @@ const MeetingComp = () => {
     handleEditPostModal();
   }
 
+  const reloadPosts = async () => {
+    const loadPosts = await getPosts();
+    if(loadPosts !== null){
+      setPosts(loadPosts);
+    }
+  }
+
   useEffect(()=>{
     try{
       const getData = async () => {
@@ -83,7 +90,7 @@ const MeetingComp = () => {
           {
             posts.map((post, index) => {
               return(
-                <TarjetaPost key={index} id={post.id} title={post.titulo} date={post.created_at} descrip={post.descripcion} id_user={post.id_usuario} cat={post.categoria} getPostId={getPostId}/>
+                <TarjetaPost key={index} id={post.id} title={post.titulo} date={post.created_at} descrip={post.descripcion} id_user={post.id_usuario} cat={post.categoria} link={post.link} interesados={post.interesados} getPostId={getPostId} loadPosts={reloadPosts}/>
               )
             })
           }
