@@ -37,7 +37,7 @@ const EditPostModal = ({openModal, id}) => {
           form.append(key, editPost[key]);
         }
         //*Hacer llamada
-        const res = await axios.post('http://localhost:5000/edit-post', form);
+        const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/edit-post', form);
         if(res.data.status === 'success'){
           setError(false);
           openModal();

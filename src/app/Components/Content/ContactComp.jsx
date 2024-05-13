@@ -39,7 +39,7 @@ const ContactComp = () => {
             form.append(key, formContact[key]);
           }
 
-          const res = await axios.post('http://localhost:5000/create-message', form);
+          const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/create-message', form);
           if(res.data.status === 'success'){
             setError(false);
             window.location.href = '/comunidad';

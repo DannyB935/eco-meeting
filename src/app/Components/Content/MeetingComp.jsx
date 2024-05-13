@@ -16,7 +16,6 @@ const MeetingComp = () => {
   const [posts, setPosts] = useState([]);
 
   const handleMeetingModal = () => {
-    console.log("Modal abierto");
     setMeetingModal(!meetingModal);
   }
 
@@ -33,9 +32,8 @@ const MeetingComp = () => {
 
   const handleNewPost = async (form) =>{
     try{
-      const res = await axios.post('http://localhost:5000/new-post', form);
+      const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/new-post', form);
       if(res.data.status == 'success'){
-        console.log("Post creado");
         let newPosts = await getPosts();
         setPosts(newPosts);
         return true;

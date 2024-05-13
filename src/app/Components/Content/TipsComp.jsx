@@ -32,7 +32,7 @@ const TipsComp = () => {
 
   const doNewTip = async (form) => {
     try{
-      const res = await axios.post('http://localhost:5000/create-tip', form);
+      const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/create-tip', form);
       if(res.data.status === 'success'){
         const loadTips = await getTips();
         if(loadTips !== null){

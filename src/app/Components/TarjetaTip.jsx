@@ -21,7 +21,7 @@ const TarjetaTip = ({title, content, id, likes, dislikes, getId, loadTips}) => {
 
   const handleDislike = async () => {
     try{
-      const res = await axios.get('http://localhost:5000/dislike-tip/'+id);
+      const res = await axios.get(process.env.NEXT_PUBLIC_RUTA+'/dislike-tip/'+id);
       if(res.data.status === 'success'){
         dislikes++;
         loadTips();

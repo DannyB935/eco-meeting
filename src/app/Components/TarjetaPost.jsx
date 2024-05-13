@@ -6,7 +6,7 @@ const TarjetaPost = ({id, title, date, descrip, id_user, cat, link, interesados,
     try{
       let newForm = new FormData();
       newForm.append('id', id);
-      const res = await axios.post('http://localhost:5000/interes-post', newForm);
+      const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/interes-post', newForm);
       if(res.data.status === 'success'){
         interesados++;
         loadPosts();

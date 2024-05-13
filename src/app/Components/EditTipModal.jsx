@@ -35,7 +35,7 @@ const EditTipModal = ({openModal, id}) => {
           form.append(key, editTip[key]);
         }
         
-        const res = await axios.post('http://localhost:5000/edit-tip', form);
+        const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/edit-tip', form);
         if(res.data.status === 'success'){
           setError(false);
           openModal();

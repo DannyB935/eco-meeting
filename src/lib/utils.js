@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export const getTips = async () => {
-  const res = await axios.get('http://localhost:5000/tips');
+  const res = await axios.get(process.env.NEXT_PUBLIC_RUTA+'/tips');
   if(res.data.status === 'success'){
+    console.log(res.data.tips);
     return res.data.tips;
   }else{
     console.log("Error al obtener los tips: ",res.data.message);
@@ -11,7 +12,7 @@ export const getTips = async () => {
 }
 
 export const getPosts = async () => {
-  const res = await axios.get('http://localhost:5000/posts');
+  const res = await axios.get(process.env.NEXT_PUBLIC_RUTA+'/posts');
   if(res.data.status === 'success'){
     res.data.posts.map((post)=>{
       return post.created_at = new Date(post.created_at).toLocaleDateString();
@@ -24,7 +25,7 @@ export const getPosts = async () => {
 }
 
 export const login = async (formData) => {
-  const res = await axios.post('http://localhost:5000/login', formData);
+  const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/login', formData);
   if(res.data.status === 'success'){
     localStorage.setItem('id', res.data.user.id);
     localStorage.setItem('user_name', res.data.user.user_name);
@@ -50,7 +51,7 @@ export const logout = () => {
 }
 
 export const register = async (formData) => {
-  const res = await axios.post('http://localhost:5000/nuevo-usuario', formData);
+  const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/nuevo-usuario', formData);
   if(res.data.status === 'success'){
     //*Se hace login automatico
     let form = new FormData();
@@ -69,7 +70,7 @@ export const register = async (formData) => {
 }
 
 export const newPost = async (formData) =>{
-  const res = await axios.post('http://localhost:5000/new-post', formData);
+  const res = await axios.post(process.env.NEXT_PUBLIC_RUTA+'/new-post', formData);
   if(res.data.status === 'success'){
     return true;
   }else{
