@@ -1,20 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# EcoMeeting
+Front End for a school project called EcoMeeting where people can share tips that can help with the enviroment and nature.
+Developed with React, NextJS and TailwindCSS.
 
-## Getting Started
+<a href="https://github.com/DannyB935/api-eco-meeting">API REST EcoMeeting</a>
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Paleta de colores:
+## Color palette
  - #D9B991
  - #D9BD89
  - #222326
@@ -22,24 +12,26 @@ Paleta de colores:
  - #12733A
  - #87C75C
 
+## Landpage
+![Landpage](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/Landpage.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Login
+![Login](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/Login.png)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Register
+![Register](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/Register.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Tips section
+![Tips](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/TipsSection.png)
 
-## Learn More
+## New Tip Modal
+![New Tip](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/NewTip.png)
 
-To learn more about Next.js, take a look at the following resources:
+## Meetings section
+![Meetings](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/MeetingsSection.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## New Meeting/Post
+![NewMeeting](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/NewMeeting.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact page
+![Contact](https://github.com/DannyB935/eco-meeting/blob/master/ReadmeImages/Contact.png)
